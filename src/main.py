@@ -7,10 +7,11 @@ from pheromone import Pheromone
 
 pygame.init()
 
-screen = pygame.display.set_mode((Default.WIDTH.value(), Default.HEIGHT.value()))
+screen = pygame.display.set_mode((Default.WIDTH.value, Default.HEIGHT.value))
 pygame.display.set_caption("Ant Simulation - SorenDeveloppement")
 
 anthill: Anthill = Anthill(100, 100, Pheromone())
+ant: Ant = Ant(150, 150, Pheromone())
 
 while True:
     for event in pygame.event.get():
@@ -21,7 +22,15 @@ while True:
             ...
 
     if pygame.key.get_pressed()[pygame.K_UP]:
-        ...
+        ant.walk()
+    if pygame.key.get_pressed()[pygame.K_RIGHT]:
+        ant.turn_right()
+    if pygame.key.get_pressed()[pygame.K_LEFT]:
+        ant.turn_left()
+
+    anthill.draw(screen)
+    ant.draw(screen)
 
     pygame.display.update()
-    screen.fill(Colors.BLACK.value())
+    screen.fill(Colors.BLACK.value)
+    pygame.time.Clock().tick(Default.TICKS.value)

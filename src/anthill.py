@@ -10,8 +10,8 @@ class Anthill:
         self.x = x
         self.y = y
         self.colony_pheromone: Pheromone = pheromone
-        self.ants_number: int = Default.COLONY_SIZE.value()
+        self.ants_number: int = Default.COLONY_SIZE.value
         self.ants: list[Ant] = []
 
     def draw(self, screen: pygame.Surface) -> None:
-        pygame.draw.circle(screen, Colors.BLUE.value(), (self.x, self.y), 20)
+        pygame.draw.circle(screen, Colors.BLUE.value, (self.x, self.y), 20)
