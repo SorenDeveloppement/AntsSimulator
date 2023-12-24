@@ -1,15 +1,16 @@
 import pygame
-import constants as c
+
+from constants import Default, Colors
+from anthill import Anthill
+from ant import Ant
+from pheromone import Pheromone
 
 pygame.init()
 
-screen = pygame.display.set_mode((c.WIDTH, c.HEIGHT))
+screen = pygame.display.set_mode((Default.WIDTH.value(), Default.HEIGHT.value()))
 pygame.display.set_caption("Ant Simulation - SorenDeveloppement")
 
-
-def main():
-    ...
-
+anthill: Anthill = Anthill(100, 100, Pheromone())
 
 while True:
     for event in pygame.event.get():
@@ -23,4 +24,4 @@ while True:
         ...
 
     pygame.display.update()
-    screen.fill(c.BLACK)
+    screen.fill(Colors.BLACK.value())
