@@ -13,6 +13,7 @@ class Ant:
         self.angle = 0
         self.speed = Default.ANT_SPEED.value
         self.pheromone = pheromone
+        self.home_pheromones = []
         self.pheromone_delay = Default.PHEROMONE_DELAY.value
 
     def draw(self, screen: pygame.Surface) -> None:
@@ -31,7 +32,7 @@ class Ant:
         else:
             self.angle += angle
 
-        if self.angle > 360:
+        if self.angle < 0 or self.angle > 360:
             self.angle %= 360
 
     def turn_right(self, angle: int = None) -> None:
@@ -40,8 +41,11 @@ class Ant:
         else:
             self.angle -= angle
 
-        if self.angle > 360:
+        if self.angle < 0 or self.angle > 360:
             self.angle %= 360
 
     def get_angle(self) -> int:
         return self.angle
+
+    def set_angle(self, angle: int) -> None:
+        self.angle = angle
