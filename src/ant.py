@@ -23,8 +23,14 @@ class Ant:
         self.x += self.speed * math.cos(self.angle)
         self.y += self.speed * math.sin(self.angle)
 
-    def turn_left(self) -> None:
-        self.angle += Default.ANGLE_SPEED.value
+    def turn_left(self, angle: int = None) -> None:
+        if angle is None:
+            self.angle += Default.ANGLE_SPEED.value
+        else:
+            self.angle += angle
 
-    def turn_right(self) -> None:
-        self.angle -= Default.ANGLE_SPEED.value
+    def turn_right(self, angle: int = None) -> None:
+        if angle is None:
+            self.angle -= Default.ANGLE_SPEED.value
+        else:
+            self.angle -= angle

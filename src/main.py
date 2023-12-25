@@ -26,7 +26,7 @@ while True:
     if pygame.key.get_pressed()[pygame.K_RIGHT]:
         ant.turn_right()
     if pygame.key.get_pressed()[pygame.K_LEFT]:
-        ant.turn_left()
+        ant.turn_left(The)
 
     anthill.draw(screen)
     ant.draw(screen)
