@@ -27,6 +27,7 @@ class PathPheromone(Pheromone):
         self.type: PheromoneType = pheromone_type
         self.x = x
         self.y = y
+        self.duration = 20 * 120
 
     def draw(self, screen) -> None:
         pygame.draw.circle(screen, Colors.BLUE.value, (self.x, self.y), 3)

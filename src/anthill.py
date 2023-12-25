@@ -1,8 +1,8 @@
 import pygame
 
 from ant import Ant
-from pheromone import Pheromone
 from constants import Default, Colors
+from pheromone import Pheromone
 
 
 class Anthill:
