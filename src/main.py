@@ -8,13 +8,12 @@ from constants import Default, Colors
 from pheromone import Pheromone, PathPheromone, PheromoneType
 
 pygame.init()
-
 screen = pygame.display.set_mode((Default.WIDTH.value, Default.HEIGHT.value))
 pygame.display.set_caption("Ant Simulation - SorenDeveloppement")
 
 anthill: Anthill = Anthill(Default.WIDTH.value / 2, Default.HEIGHT.value / 2, Pheromone())
-for i in range(360):
-    anthill.ants.append(Ant(anthill.x, anthill.y, Pheromone()))
+for i in range(18):
+    anthill.ants.append(Ant(anthill, anthill.x, anthill.y, Pheromone()))
     anthill.ants[i].set_angle(i)
 
 
@@ -33,6 +32,8 @@ def update_ant(ant: Ant):
         ant.turn_left(90)
 
     ant.draw(screen)
+    for s in ant.sensors:
+        s.draw(screen)
 
     if ant.pheromone_delay == 0:
         ant.home_pheromones.append(PathPheromone((0, 0, 0), PheromoneType.HOME_PATH, ant.x, ant.y))
@@ -56,11 +57,14 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        if event.type == pygame.KEYDOWN:
-            ...
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if pygame.mouse.get_pressed()[0]:
+                anthill.collective_pheromones.append(
+                    PathPheromone((0, 0, 0), PheromoneType.FOOD_PATH, pygame.mouse.get_pos()[0],
+                                  pygame.mouse.get_pos()[1]))
 
     anthill.draw(screen)
-    update_pheromones(False)
+    update_pheromones(True)
     for ant in anthill.ants:
         update_ant(ant)
 

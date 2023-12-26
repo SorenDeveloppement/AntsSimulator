@@ -30,7 +30,14 @@ class PathPheromone(Pheromone):
         self.duration = 20 * 120
 
     def draw(self, screen) -> None:
-        pygame.draw.circle(screen, Colors.BLUE.value, (self.x, self.y), 3)
+        match self.type:
+            case PheromoneType.HOME_PATH:
+                pygame.draw.circle(screen, Colors.BLUE.value, (self.x, self.y), 3)
+            case PheromoneType.FOOD_PATH:
+                pygame.draw.circle(screen, Colors.GREEN.value, (self.x, self.y), 3)
 
-    def _is(self, p_type: PheromoneType) -> bool:
+    def is_(self, p_type: PheromoneType) -> bool:
         return self.type == p_type
+
+    def get_location(self) -> tuple[int, int]:
+        return self.x, self.y
