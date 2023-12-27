@@ -12,7 +12,7 @@ screen = pygame.display.set_mode((Default.WIDTH.value, Default.HEIGHT.value))
 pygame.display.set_caption("Ant Simulation - SorenDeveloppement")
 
 anthill: Anthill = Anthill(Default.WIDTH.value / 2, Default.HEIGHT.value / 2, Pheromone())
-for i in range(18):
+for i in range(1):
     anthill.ants.append(Ant(anthill, anthill.x, anthill.y, Pheromone()))
     anthill.ants[i].set_angle(i)
 
@@ -34,6 +34,10 @@ def update_ant(ant: Ant):
     ant.draw(screen)
     for s in ant.sensors:
         s.draw(screen)
+        if s.detect(PheromoneType.FOOD_PATH, anthill):
+            ant.follow_sensor(s)
+        print(True)
+        print("-----------")
 
     if ant.pheromone_delay == 0:
         ant.home_pheromones.append(PathPheromone((0, 0, 0), PheromoneType.HOME_PATH, ant.x, ant.y))
