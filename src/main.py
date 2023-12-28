@@ -63,6 +63,7 @@ def update_ant(ant: Ant):
         if anthill.on_it(ant.x, ant.y):
             anthill.drop_food(1)
             ant.set_state(AntState.SEARCHING_FOOD)
+            ant.turn_left(180)
 
 
 def update_pheromones(draw_p: bool):
