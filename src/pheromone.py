@@ -28,6 +28,7 @@ class PathPheromone(Pheromone):
         self.x = x
         self.y = y
         self.duration = 20 * 120
+        self.intensity: float = 0
 
     def draw(self, screen) -> None:
         match self.type:
